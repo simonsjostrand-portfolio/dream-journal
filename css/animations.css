@@ -1,0 +1,92 @@
+/*********************************/
+/* Animations for index document */
+/*********************************/
+
+/* Fade out header */
+@keyframes fadeOutHeader {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Hero heading */
+@keyframes slideFromTop {
+  0% {
+    font-weight: 480;
+    letter-spacing: 40px;
+    text-decoration-color: transparent;
+    opacity: 0;
+    transform: translateY(-1100px);
+  }
+  30% {
+    opacity: 0;
+  }
+  50% {
+    font-weight: 460;
+  }
+  80% {
+    letter-spacing: 10px;
+    transform: translate(-20px, 0);
+  }
+  86% {
+    text-decoration-color: transparent;
+  }
+  100% {
+    letter-spacing: revert;
+  }
+}
+
+/* Fade in sections */
+@keyframes fadeInSection {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-80rem);
+  }
+  50% {
+    scale: 1;
+  }
+
+  80% {
+    scale: 1.6;
+    transform: translateX(7rem) translateY(80px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0) translateY(0);
+    scale: 1;
+  }
+}
+
+@keyframes cloudDrift {
+  from {
+    margin-inline-start: -150px;
+  }
+  to {
+    transform: translateX(calc(100vw + 150px));
+  }
+}
+
+/* ANIMATIONS FOR DREAMS DOCUMENT */
+@keyframes fadeInColor {
+  0% {
+    color: var(--clr-background);
+  }
+  40% {
+    color: var(--clr-background);
+  }
+
+  100% {
+    color: var(--clr-primary);
+  }
+}
