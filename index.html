@@ -23,8 +23,6 @@
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/animations.css" />
 
-    <script src="script.js" defer></script>
-
     <title>Dreamjournal</title>
   </head>
   <body>
@@ -71,8 +69,9 @@
     </header>
 
     <button class="btn-add-dream">Add dream</button>
-
-    <div class="overlay" id="overlay"></div>
+    <p class="note-no-dreams">
+      Your dreams need a home, your journal is ready to welcome them 😊
+    </p>
 
     <div class="dream_form-container">
       <form id="dream-form">
@@ -116,36 +115,14 @@
           <ion-icon class="icon-close-form" name="close-outline"></ion-icon>
         </div>
       </form>
-      <p class="form-note">👋 Hope your dream gave you something to wonder about <3</h3>
+      <p class="form-note">
+        👋 Hope your dream gave you something to wonder about!
+      </p>
     </div>
 
-    <main class="dream-list">
-      <article class="dream-card">
-        <header class="dream-info">
-          <p class="dream-date">2/1/2024</p>
-          <h2 class="dream-title">Swimming in the sky</h2>
-        </header>
-        <p class="dream">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus
-          voluptate aliquam aliquid inventore assumenda mollitia deserunt,
-          laboriosam unde totam quasi quo fugit esse sint qui similique? Facilis
-          molestiae perspiciatis doloribus!
-        </p>
-      </article>
+    <main class="dream-list"></main>
 
-      <article class="dream-card">
-        <header class="dream-info">
-          <p class="dream-date">1/1/2024</p>
-          <h2 class="dream-title">Flying in the sea</h2>
-        </header>
-        <p class="dream">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus
-          voluptate aliquam aliquid inventore assumenda mollitia deserunt,
-          laboriosam unde totam quasi quo fugit esse sint qui similique? Facilis
-          molestiae perspiciatis doloribus!
-        </p>
-      </article>
-    </main>
+    <div class="overlay" id="overlay"></div>
 
     <!-- Go top (fixed icon) -->
     <div class="fixed-icon-wrapper">
@@ -277,4 +254,5 @@
 
     <footer>Night falls, dreams rise. Keep exploring. 💫</footer>
   </body>
+  <script src="script.js" defer></script>
 </html>

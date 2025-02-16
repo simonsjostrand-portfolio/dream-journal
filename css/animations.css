@@ -1,7 +1,3 @@
-/*********************************/
-/* Animations for index document */
-/*********************************/
-
 /* Fade out header */
 @keyframes fadeOutHeader {
   to {
@@ -70,7 +66,7 @@
 
 @keyframes cloudDrift {
   from {
-    margin-inline-start: -150px;
+    transform: translateX(-150px);
   }
   to {
     transform: translateX(calc(100vw + 150px));
