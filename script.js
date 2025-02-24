@@ -15,12 +15,22 @@ const btnAddDream = document.querySelector('.btn-add-dream');
 const btnSubmitDream = document.querySelector('.btn-submit-dream');
 const iconCloseForm = document.querySelector('.icon-close-form');
 
-let dreams = [];
-
-// Save to local storage
-const setLocalStorage = function (dream) {
-  localStorage.setItem('dreams', JSON.stringify(dream));
-};
+let dreams = [
+  // {
+  //   id: 1,
+  //   title: 'Flying Over the Ocean',
+  //   date: '2025-02-15',
+  //   description:
+  //     'I was soaring above a vast, crystal-clear ocean, feeling the wind rush past me as I flew effortlessly. It felt like freedom in its purest form, and the sun set in vibrant oranges and purples as I drifted further out to sea.',
+  // },
+  // {
+  //   id: 2,
+  //   title: 'Chasing the Moon',
+  //   date: '2025-02-16',
+  //   description:
+  //     'I found myself running through a dense forest, chasing a giant, glowing moon that seemed to hover just above the trees. As I sprinted, the moon beckoned me forward, and I could feel an incredible energy surrounding me, guiding me deeper into the woods.',
+  // },
+];
 
 // Render dreams
 const displayDreams = function (dreams) {
@@ -30,7 +40,7 @@ const displayDreams = function (dreams) {
     noteNoDreams.style.display = 'block';
   } else {
     noteNoDreams.style.display = 'none';
-    btnAddDream.style.marginBlockEnd = '420px';
+    btnAddDream.style.marginBlockEnd = '300px';
   }
 
   dreams.forEach(function (dream) {
@@ -53,13 +63,41 @@ const getLocalStorage = function () {
 
   if (!data) return;
 
-  dreams = data;
+  dreams = data ? data : [];
 
   displayDreams(dreams);
 };
 getLocalStorage();
 
-// Hide and reset dream form
+// Save dreams to local storage
+const setLocalStorage = function (dream) {
+  localStorage.setItem('dreams', JSON.stringify(dream));
+};
+
+// Open dream form
+btnAddDream.addEventListener('click', function () {
+  overlay.style.display = 'block';
+  formContainer.style.display = 'block';
+});
+
+// Submit and display new dream
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const newDream = {
+    id: Date.now(),
+    title: inputTitle.value,
+    date: inputDate.value,
+    description: inputDescription.value,
+  };
+  dreams.push(newDream);
+
+  setLocalStorage(dreams);
+  displayDreams(dreams);
+  hideForm();
+});
+
+// Hide and reset form
 const hideForm = function () {
   form.reset();
   overlay.style.display = 'none';
@@ -81,30 +119,6 @@ const closeForm = function () {
     }
   }
 };
-
-// Open dream form
-btnAddDream.addEventListener('click', function () {
-  overlay.style.display = 'block';
-  formContainer.style.display = 'block';
-});
-
-// Submit and display new dream
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  const newDream = {
-    id: Date.now(),
-    title: inputTitle.value,
-    date: inputDate.value,
-    description: inputDescription.value,
-  };
-  dreams.push(newDream);
-  setLocalStorage(dreams);
-  displayDreams(dreams);
-  console.log(localStorage);
-
-  hideForm();
-});
 
 // Close form on click
 iconCloseForm.addEventListener('click', closeForm);

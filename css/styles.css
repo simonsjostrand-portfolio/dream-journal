@@ -12,7 +12,7 @@
   --fs-dream-date: 0.84rem;
   --fs-dream-text: 1.15rem;
   --fs-form-note: 1.23rem;
-  --fs-no-dreams-note: 1.4rem;
+  --fs-note-no-dreams: 1.2rem;
   --fs-footer: 0.93rem;
 
   --fw-heading-primary: 300;
@@ -25,7 +25,7 @@
   --clr-primary: hsl(28, 98%, 49%);
   --clr-secondary: rgb(111, 180, 232);
   --clr-add-dream: hsl(164, 71%, 38%);
-  --clr-no-dreams-note: hsla(28, 28%, 74%, 0.566);
+  --clr-note-no-dreams: hsla(28, 28%, 74%, 0.566);
   --clr-form: hsl(164, 72%, 23%);
   --clr-date: hsl(40, 100%, 61%);
   --clr-footer: hsl(0, 0%, 100%);
@@ -46,7 +46,7 @@ body {
 .hero {
   inline-size: 100%;
   block-size: 100vh;
-  margin-block-end: 180px;
+  margin-block-end: 220px;
 
   position: relative;
 
@@ -117,8 +117,8 @@ body {
 }
 
 .note-no-dreams {
-  color: var(--clr-no-dreams-note);
-  font-size: var(--fs-no-dreams-note);
+  color: var(--clr-note-no-dreams);
+  font-size: var(--fs-note-no-dreams);
   font-style: italic;
   text-align: center;
 }
@@ -176,6 +176,10 @@ body {
     #dream_title-input,
     #dream_date-input {
       padding: 10px;
+    }
+
+    #dream_date-input::placeholder {
+      content: 'optional';
     }
   }
 

@@ -68,6 +68,8 @@
       <!-- https://www.vecteezy.com/free-photos/dream-catcher-background?license-free=true -->
     </header>
 
+    <div class="stats"></div>
+
     <button class="btn-add-dream">Add dream</button>
     <p class="note-no-dreams">
       Your dreams need a home, your journal is ready to welcome them 😊
@@ -87,14 +89,17 @@
           />
 
           <label class="sr-only" for="dream_date-input">Dream date</label>
-          <input
+          <input type="date" id="dream_date-input" name="dream_date-input" />
+
+          <!-- <input
             type="text"
             id="dream_date-input"
             name="dream_date-input"
-            placeholder="Date..."
+            placeholder="Date (DD-MM-YYYY)"
+            pattern="([0-2][0-9]|(3)[0-1])-(0[1-9]|1[0-2])-\d{4}"
             aria-label="Dream date"
             required
-          />
+          />  -->
         </div>
 
         <label class="sr-only" for="dream_description-input"
@@ -116,7 +121,7 @@
         </div>
       </form>
       <p class="form-note">
-        👋 Hope your dream gave you something to wonder about!
+        Hope your dream gave you something to wonder about!
       </p>
     </div>
 
