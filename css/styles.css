@@ -4,7 +4,7 @@
   --ff-secondary: 'Poppins', sans-serif;
   --ff-dream-title: 'Bungee Spice', 'Fredoka', sans-serif, serif;
 
-  --line-height-body: 1.6;
+  --line-height-body: 1.7;
 
   --fs-heading-primary: 5.4rem;
   --fs-button-add: 1.1rem;
@@ -158,7 +158,7 @@ body {
   max-inline-size: 700px;
   background-color: var(--clr-form);
   border-radius: 4px;
-  padding: 50px 50px 20px;
+  padding: 60px 60px 30px;
   margin-inline: auto;
   margin-block-end: 60px;
 
@@ -167,19 +167,59 @@ body {
   justify-items: center;
 
   .dream_details-wrapper {
-    margin-block-end: 20px;
+    margin-block-end: 34px;
 
     display: grid;
     grid-template-columns: 3fr 1fr;
     gap: 24px;
 
-    #dream_title-input,
-    #dream_date-input {
-      padding: 10px;
+    .dream_title-input {
+      width: 300px;
+      letter-spacing: 1px;
+
+      position: relative;
     }
 
-    #dream_date-input::placeholder {
-      content: 'optional';
+    .dream_title-input input {
+      display: block;
+      width: 100%;
+      color: #fff;
+      font-size: 18px;
+      background-color: transparent;
+      border-bottom: 3px solid;
+      padding-block: 11px;
+    }
+
+    .dream_title-input input:focus,
+    .dream_title-input input:valid {
+      outline: 0;
+      border-bottom: 3px solid var(--clr-primary);
+    }
+
+    .dream_title-input label {
+      color: #fff;
+      pointer-events: none;
+
+      position: absolute;
+      top: 15px;
+      left: 0;
+    }
+
+    .dream_title-input label span {
+      display: inline-block;
+      font-size: 18px;
+      transition: 0.3s cubic-bezier(0.67, -0.54, 0.263, 1.56);
+    }
+
+    .dream_title-input input:focus + label span,
+    .dream_title-input input:valid + label span {
+      color: var(--clr-primary);
+      font-weight: 500;
+      transform: translateY(-34px);
+    }
+
+    #dream_date-input {
+      padding: 10px;
     }
   }
 
@@ -188,7 +228,7 @@ body {
     inline-size: 100%;
     height: 200px;
     padding: 5px 8px;
-    margin-block-end: 40px;
+    margin-block-end: 50px;
   }
 
   .form-btn-wrapper {
@@ -222,17 +262,6 @@ body {
   }
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden;
-}
-
 .overlay {
   position: fixed;
   top: 0;
@@ -255,7 +284,7 @@ body {
 }
 
 .dream {
-  inline-size: 760px;
+  max-inline-size: 760px;
   margin-inline: auto;
 
   animation: fadeInSection linear;
@@ -267,19 +296,20 @@ body {
     color: var(--clr-primary);
     margin-block: 6px 2px;
 
-    .dream-title {
-      font-family: var(--ff-dream-title);
-      font-size: var(--fs-dream-title);
-      letter-spacing: 2px;
-      margin-block-end: 10px;
-    }
-
     .dream-date {
       color: var(--clr-date);
       font-size: var(--fs-dream-date);
       font-style: italic;
       font-weight: var(--fw-dream-date);
       letter-spacing: 1.4px;
+      margin-block-end: -4px;
+    }
+
+    .dream-title {
+      font-family: var(--ff-dream-title);
+      font-size: var(--fs-dream-title);
+      letter-spacing: 2px;
+      margin-block-end: 6px;
     }
   }
 

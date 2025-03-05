@@ -68,8 +68,6 @@
       <!-- https://www.vecteezy.com/free-photos/dream-catcher-background?license-free=true -->
     </header>
 
-    <div class="stats"></div>
-
     <button class="btn-add-dream">Add dream</button>
     <p class="note-no-dreams">
       Your dreams need a home, your journal is ready to welcome them 😊
@@ -78,33 +76,21 @@
     <div class="dream_form-container">
       <form id="dream-form">
         <div class="dream_details-wrapper">
-          <label class="sr-only" for="dream_title-input">Dream title</label>
-          <input
-            type="text"
-            id="dream_title-input"
-            name="dream_title-input"
-            placeholder="Dream title..."
-            aria-label="Dream title"
-            required
-          />
+          <div class="dream_title-input">
+            <input type="text" required />
+            <label>
+              <span style="transition-delay: 0ms">T</span
+              ><span style="transition-delay: 50ms">i</span
+              ><span style="transition-delay: 100ms">t</span
+              ><span style="transition-delay: 150ms">l</span
+              ><span style="transition-delay: 200ms">e</span>
+            </label>
+          </div>
 
-          <label class="sr-only" for="dream_date-input">Dream date</label>
           <input type="date" id="dream_date-input" name="dream_date-input" />
-
-          <!-- <input
-            type="text"
-            id="dream_date-input"
-            name="dream_date-input"
-            placeholder="Date (DD-MM-YYYY)"
-            pattern="([0-2][0-9]|(3)[0-1])-(0[1-9]|1[0-2])-\d{4}"
-            aria-label="Dream date"
-            required
-          />  -->
         </div>
 
-        <label class="sr-only" for="dream_description-input"
-          >Dream description</label
-        >
+        <label for="dream_description-input">Dream description</label>
         <textarea
           id="dream_description-input"
           name="dream_description-input"
@@ -121,7 +107,7 @@
         </div>
       </form>
       <p class="form-note">
-        Hope your dream gave you something to wonder about!
+        Hope your dream gave you something fun to wonder about!
       </p>
     </div>
 

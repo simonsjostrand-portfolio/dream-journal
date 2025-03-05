@@ -1,9 +1,9 @@
 'use strict';
 
 const header = document.querySelector('.hero');
-const overlay = document.getElementById('overlay');
-const noteNoDreams = document.querySelector('.note-no-dreams');
 const dreamList = document.querySelector('.dream-list');
+const noteNoDreams = document.querySelector('.note-no-dreams');
+const overlay = document.getElementById('overlay');
 
 const formContainer = document.querySelector('.dream_form-container');
 const form = document.getElementById('dream-form');
@@ -13,24 +13,9 @@ const inputDescription = document.getElementById('dream_description-input');
 
 const btnAddDream = document.querySelector('.btn-add-dream');
 const btnSubmitDream = document.querySelector('.btn-submit-dream');
-const iconCloseForm = document.querySelector('.icon-close-form');
+const btnCloseForm = document.querySelector('.icon-close-form');
 
-let dreams = [
-  // {
-  //   id: 1,
-  //   title: 'Flying Over the Ocean',
-  //   date: '2025-02-15',
-  //   description:
-  //     'I was soaring above a vast, crystal-clear ocean, feeling the wind rush past me as I flew effortlessly. It felt like freedom in its purest form, and the sun set in vibrant oranges and purples as I drifted further out to sea.',
-  // },
-  // {
-  //   id: 2,
-  //   title: 'Chasing the Moon',
-  //   date: '2025-02-16',
-  //   description:
-  //     'I found myself running through a dense forest, chasing a giant, glowing moon that seemed to hover just above the trees. As I sprinted, the moon beckoned me forward, and I could feel an incredible energy surrounding me, guiding me deeper into the woods.',
-  // },
-];
+let dreams = [];
 
 // Render dreams
 const displayDreams = function (dreams) {
@@ -110,18 +95,14 @@ const closeForm = function () {
   if (inputDescription.value === '') {
     hideForm();
   } else {
-    if (
-      confirm(
-        'Poof! Your dream will vanish into the void. Still want to close?'
-      )
-    ) {
+    if (confirm('Poof! Your dream will vanish...')) {
       hideForm();
     }
   }
 };
 
 // Close form on click
-iconCloseForm.addEventListener('click', closeForm);
+btnCloseForm.addEventListener('click', closeForm);
 overlay.addEventListener('click', closeForm);
 
 // Close form on ESC key
