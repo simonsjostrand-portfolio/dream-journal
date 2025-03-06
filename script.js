@@ -95,7 +95,7 @@ const closeForm = function () {
   if (textareaDescription.value === '') {
     hideForm();
   } else {
-    if (confirm('Poof! Your dream will vanish...')) {
+    if (confirm('Your dream will vanish...')) {
       hideForm();
     }
   }
