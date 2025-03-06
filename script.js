@@ -3,13 +3,13 @@
 const header = document.querySelector('.hero');
 const dreamList = document.querySelector('.dream-list');
 const noteNoDreams = document.querySelector('.note-no-dreams');
-const overlay = document.getElementById('overlay');
+const overlay = document.querySelector('.overlay');
 
 const formContainer = document.querySelector('.dream_form-container');
-const form = document.getElementById('dream-form');
-const inputTitle = document.getElementById('dream_title-input');
-const inputDate = document.getElementById('dream_date-input');
-const inputDescription = document.getElementById('dream_description-input');
+const form = document.querySelector('.dream-form');
+const inputTitle = document.querySelector('.dream_title-input');
+const inputDate = document.querySelector('.dream_date-input');
+const textareaDescription = document.querySelector('.dream_description-input');
 
 const btnAddDream = document.querySelector('.btn-add-dream');
 const btnSubmitDream = document.querySelector('.btn-submit-dream');
@@ -73,7 +73,7 @@ form.addEventListener('submit', function (e) {
     id: Date.now(),
     title: inputTitle.value,
     date: inputDate.value,
-    description: inputDescription.value,
+    description: textareaDescription.value,
   };
   dreams.push(newDream);
 
@@ -92,7 +92,7 @@ const hideForm = function () {
 // Close form (ask if not empty)
 const closeForm = function () {
   // Close if textarea is empty
-  if (inputDescription.value === '') {
+  if (textareaDescription.value === '') {
     hideForm();
   } else {
     if (confirm('Poof! Your dream will vanish...')) {

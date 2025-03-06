@@ -74,10 +74,10 @@
     </p>
 
     <div class="dream_form-container">
-      <form id="dream-form">
+      <form class="dream-form">
         <div class="dream_details-wrapper">
-          <div class="dream_title-input">
-            <input type="text" required />
+          <div class="dream_title-wrapper">
+            <input class="dream_title-input" type="text" required />
             <label>
               <span style="transition-delay: 0ms">T</span
               ><span style="transition-delay: 50ms">i</span
@@ -87,15 +87,15 @@
             </label>
           </div>
 
-          <input type="date" id="dream_date-input" name="dream_date-input" />
+          <input type="date" class="dream_date-input" name="dream_date-input" />
         </div>
 
-        <label for="dream_description-input">Dream description</label>
         <textarea
-          id="dream_description-input"
+          class="dream_description-input"
           name="dream_description-input"
-          placeholder="Psst... Emojis? Press Win + Dot 😃"
+          placeholder="Dream..."
           aria-label="Dream description"
+          spellcheck="true"
           required
         ></textarea>
 
@@ -106,9 +106,7 @@
           <ion-icon class="icon-close-form" name="close-outline"></ion-icon>
         </div>
       </form>
-      <p class="form-note">
-        Hope your dream gave you something fun to wonder about!
-      </p>
+      <p class="form-note">I hope you had a meaningful dream! 🙂</p>
     </div>
 
     <main class="dream-list"></main>
@@ -150,7 +148,7 @@
         </g>
       </svg>
 
-      <p class="fixed-icon-text">Click me to get flown to the top</p>
+      <p class="fixed-icon-text">Click me, and I'll fly you to the top!</p>
     </div>
 
     <!-- Clouds -->
