@@ -249,9 +249,11 @@ body {
     gap: 20px;
 
     .btn-submit-dream {
+      color: #fff;
       background-color: var(--clr-add-dream);
       border: none;
       padding: 10px 30px;
+
       justify-self: center;
     }
 
