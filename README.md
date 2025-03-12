@@ -9,7 +9,7 @@ A simple web app to record and reflect on your dreams. Easily add dreams with a 
 - Simple and clean UI.
 
 ## 🌍 Live Demo
-[Check it out here](https://your-username.github.io/dream-journal/)  
+[Check it out here](https://simonsjostrand-portfolio.github.io/dream-journal/)  
 
 ## 📖 How to Use
 1. Click the **"Add Dream"** button.
