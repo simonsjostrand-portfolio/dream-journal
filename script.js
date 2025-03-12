@@ -67,7 +67,7 @@ renderDreams(dreams);
 // Create dream
 const createDream = function () {
   const newDream = {
-    id: (Date.now() + '').slice(-10),
+    id: crypto.randomUUID(),
     title: inputTitle.value,
     date: inputDate.value,
     description: fieldDescription.value,
