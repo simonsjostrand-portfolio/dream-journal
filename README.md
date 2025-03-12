@@ -13,7 +13,7 @@ A simple web app to record and reflect on your dreams. Easily add dreams with a 
 
 ## 📖 How to Use
 1. Click the **"Add Dream"** button.
-2. Fill in your dream details (title, date, description).
+2. Fill in your dream details: Title, (optional) Date, and Description.
 3. Click **"Submit"** to save your dream.
 4. Your dream will be stored and displayed on the page.
 
