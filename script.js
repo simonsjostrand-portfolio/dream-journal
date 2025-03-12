@@ -40,7 +40,7 @@ const displayDreamMessage = () => (dreamMessage.style.display = 'block');
 const hideDreamMessage = () => (dreamMessage.style.display = 'none');
 
 // Render dreams
-const renderDreams = function (dreams) {
+const renderDreams = function () {
   dreamList.innerHTML = '';
 
   if (dreams.length === 0) {
@@ -62,19 +62,7 @@ const renderDreams = function (dreams) {
     dreamList.insertAdjacentHTML('afterbegin', html);
   });
 };
-renderDreams(dreams);
-
-// Create dream
-const createDream = function () {
-  const newDream = {
-    id: crypto.randomUUID(),
-    title: inputTitle.value,
-    date: inputDate.value,
-    description: fieldDescription.value,
-  };
-
-  dreams.push(newDream);
-};
+renderDreams();
 
 // Form handling
 const showForm = function () {
@@ -118,7 +106,15 @@ document.addEventListener('keydown', function (e) {
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
-  createDream();
+  const newDream = {
+    id: crypto.randomUUID(),
+    title: inputTitle.value.trim(),
+    date: inputDate.value.trim(),
+    description: fieldDescription.value.trim(),
+  };
+
+  dreams.push(newDream);
+
   setLocalStorage(dreams);
   renderDreams(dreams);
   hideForm();
