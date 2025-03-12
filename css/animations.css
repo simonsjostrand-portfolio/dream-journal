@@ -5,7 +5,7 @@
   }
 }
 
-/* Hero heading */
+/* Slide in hero heading */
 @keyframes slideFromTop {
   0% {
     font-weight: 480;
@@ -43,6 +43,7 @@
   }
 }
 
+/* Angel icon slide in */
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -64,6 +65,7 @@
   }
 }
 
+/* Cloud drift */
 @keyframes cloudDrift {
   from {
     transform: translateX(-150px);
@@ -73,8 +75,7 @@
   }
 }
 
-/* ANIMATIONS FOR DREAMS DOCUMENT */
-@keyframes fadeInColor {
+/* @keyframes fadeInColor {
   0% {
     color: var(--clr-background);
   }
@@ -85,4 +86,4 @@
   100% {
     color: var(--clr-primary);
   }
-}
+} */

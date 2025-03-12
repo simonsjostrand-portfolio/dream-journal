@@ -4,20 +4,23 @@ const header = document.querySelector('.hero');
 const dreamList = document.querySelector('.dream-list');
 const noteNoDreams = document.querySelector('.note-no-dreams');
 const overlay = document.querySelector('.overlay');
-
 const formContainer = document.querySelector('.dream_form-container');
 const form = document.querySelector('.dream-form');
 const inputTitle = document.querySelector('.dream_title-input');
 const inputDate = document.querySelector('.dream_date-input');
 const textareaDescription = document.querySelector('.dream_description-input');
-
 const btnAddDream = document.querySelector('.btn-add-dream');
 const btnSubmitDream = document.querySelector('.btn-submit-dream');
 const btnCloseForm = document.querySelector('.icon-close-form');
+const iconFixedWrapper = document.querySelector('.fixed-icon-wrapper');
+const iconFixed = document.querySelector('.icon-go-top');
+
+///////////////////////////////////////////////////////////////////////////////////////////
 
 let dreams = [];
+console.log(dreams);
 
-// Render dreams
+// Display dreams
 const displayDreams = function (dreams) {
   dreamList.innerHTML = '';
 
@@ -25,10 +28,10 @@ const displayDreams = function (dreams) {
     noteNoDreams.style.display = 'block';
   } else {
     noteNoDreams.style.display = 'none';
-    btnAddDream.style.marginBlockEnd = '300px';
+    btnAddDream.style.marginBlockEnd = '360px';
   }
 
-  dreams.forEach(function (dream) {
+  dreams.forEach(dream => {
     const html = `
       <article class="dream">
         <header class="dream-info">
@@ -70,7 +73,7 @@ form.addEventListener('submit', function (e) {
   e.preventDefault();
 
   const newDream = {
-    id: Date.now(),
+    id: (Date.now() + '').slice(-10),
     title: inputTitle.value,
     date: inputDate.value,
     description: textareaDescription.value,
@@ -111,9 +114,6 @@ document.addEventListener('keydown', event => {
 });
 
 // Scroll-to-top (icon)
-const fixedIconWrapper = document.querySelector('.fixed-icon-wrapper');
-const iconFixed = document.querySelector('.icon-go-top');
-
 iconFixed.addEventListener('click', function (e) {
   e.preventDefault();
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -125,8 +125,8 @@ window.addEventListener('scroll', function () {
   let scrollPosition = window.scrollY;
 
   if (scrollPosition > headerHeight) {
-    fixedIconWrapper.classList.add('visible');
+    iconFixedWrapper.classList.add('visible');
   } else {
-    fixedIconWrapper.classList.remove('visible');
+    iconFixedWrapper.classList.remove('visible');
   }
 });
