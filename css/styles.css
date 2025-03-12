@@ -391,7 +391,7 @@ body {
   .cloud-icon-medium {
     width: 80px;
 
-    animation: cloudDrift 200s linear infinite;
+    animation: cloudDrift 99s linear infinite;
   }
 
   .cloud-icon-small {
@@ -403,7 +403,7 @@ body {
   .cloud-icon-medium-large {
     width: 92px;
 
-    animation: cloudDrift 100s linear infinite;
+    animation: cloudDrift 130s linear infinite;
   }
 
   .cloud-icon-large {
