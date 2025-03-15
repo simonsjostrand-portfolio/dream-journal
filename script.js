@@ -15,7 +15,7 @@ const btnCloseForm = document.querySelector('.icon-close-form');
 const fixedIconWrapper = document.querySelector('.fixed-icon-wrapper');
 const iconFixed = document.querySelector('.icon-go-top');
 
-///////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
 let dreams = [];
 
@@ -38,6 +38,12 @@ const setLocalStorage = function (dream) {
 // Handle dream message
 const displayDreamMessage = () => (dreamMessage.style.display = 'block');
 const hideDreamMessage = () => (dreamMessage.style.display = 'none');
+
+const formatDate = function () {
+  const date = new Date();
+  console.log(date);
+};
+formatDate();
 
 // Render dreams
 const renderDreams = function () {

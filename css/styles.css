@@ -116,7 +116,7 @@ body {
     border: none;
     border-radius: 1px;
     margin-inline: auto;
-    margin-block-end: 330px;
+    margin-block-end: 420px;
     padding: 8px 24px;
     outline: 3px solid var(--clr-form);
     /*  outline-offset: 3px; */
@@ -294,7 +294,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  gap: 540px;
+  gap: 400px;
 }
 
 .dream {
