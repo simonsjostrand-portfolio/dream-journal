@@ -27,9 +27,6 @@ A simple web app to record and reflect on your dreams. Easily add dreams with a 
 - Search or filter dreams  
 - User authentication for saving dreams across devices  
 
-## 📄 License
-This project is open-source and available under the **MIT License**.
-
 ---
 
 ### Want to contribute?
