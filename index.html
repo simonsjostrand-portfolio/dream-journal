@@ -13,9 +13,9 @@
     />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="src/reset.css" />
+    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="stylesheet" href="src/animations.css" />
 
     <!-- Icons -->
     <script
@@ -23,7 +23,7 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
     ></script>
 
-    <script src="script.js" defer></script>
+    <script src="src/main.js" type="module"></script>
 
     <title>Dreamjournal</title>
   </head>
@@ -31,7 +31,7 @@
     <header class="hero">
       <img
         class="hero-img"
-        src="images/dreamcatcher.jpg"
+        src="src/img/dreamcatcher.jpg"
         alt="Dreamcatcher with orange pearls, white feathers and lightbrown net"
       />
       <h1 class="hero-heading">Dreamjournal</h1>
@@ -176,8 +176,13 @@
       <form class="dream-form">
         <div class="dream_details-wrapper">
           <div class="dream_title-wrapper">
-            <input class="dream_title-input" type="text" required />
-            <label>
+            <input
+              class="dream_title-input"
+              type="text"
+              required
+              aria-label="Title"
+            />
+            <label aria-hidden="true">
               <span style="transition-delay: 0ms">T</span
               ><span style="transition-delay: 50ms">i</span
               ><span style="transition-delay: 100ms">t</span
