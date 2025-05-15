@@ -25,7 +25,6 @@ A simple web app to record and reflect on your dreams. Easily add dreams with a 
 ## 📌 Future Improvements
 - Edit and delete dreams  
 - Search or filter dreams  
-- User authentication for saving dreams across devices  
 
 ---
 
