@@ -7,7 +7,7 @@
   --line-height-body: 1.55;
   --line-height-textarea: 1.3;
 
-  --fs-heading-primary: 5.4rem;
+  --fs-heading-primary: 6rem;
   --fs-button-add: 1.1rem;
   --fs-dream-title: 2rem;
   --fs-dream-date: 0.84rem;
@@ -310,7 +310,11 @@ body {
 
     position: absolute;
     top: 8px;
-    right: 45px;
+    right: 50px;
+  }
+
+  .icon-edit:hover {
+    animation: wiggle 3s ease-out;
   }
 
   .icon-delete {
@@ -322,6 +326,10 @@ body {
     position: absolute;
     top: 8px;
     right: 8px;
+  }
+
+  .icon-delete:hover {
+    animation: flash 1s ease-out;
   }
 
   .dream-info {

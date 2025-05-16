@@ -2,7 +2,9 @@ import './helpers.js';
 import {
   renderDreamMessage,
   hideDreamMessage,
+  showForm,
   closeForm,
+  fillForm,
   showDreamIcons,
   hideDreamIcons,
 } from './helpers.js';
@@ -17,6 +19,7 @@ const inputTitle = document.querySelector('.dream_title-input');
 const inputDate = document.querySelector('.dream_date-input');
 const fieldDescription = document.querySelector('.dream_description-field');
 const btnAddDream = document.querySelector('.btn-add-dream');
+const btnSubmitDream = document.querySelector('.btn-submit-dream');
 const btnCloseForm = document.querySelector('.icon-close-form');
 const fixedIconWrapper = document.querySelector('.fixed-icon-wrapper');
 const iconFixed = document.querySelector('.icon-go-top');
@@ -24,6 +27,7 @@ const iconFixed = document.querySelector('.icon-go-top');
 ////////////////////////////////////////////////////////////
 
 let dreams = [];
+let editingDreamId = null;
 
 // Get dreams from local storage
 const getLocalStorage = function () {
@@ -70,27 +74,40 @@ const handleSubmit = function (e) {
   e.preventDefault();
 
   const dream = {
-    id: crypto.randomUUID(),
+    id: editingDreamId ?? crypto.randomUUID(), // If editing, use existing ID
     title: inputTitle.value.trim(),
     date: inputDate.value.trim(),
     description: fieldDescription.value.trim(),
   };
 
-  dreams.push(dream);
+  if (editingDreamId) {
+    // Find index and replace the dream
+    const index = dreams.findIndex(dream => dream.id === editingDreamId);
+    dreams[index] = dream;
+  } else {
+    dreams.push(dream);
+  }
 
   setLocalStorage(dreams);
   renderDreams(dreams);
   closeForm(form, formContainer, overlay);
+
+  // Reset editing state
+  editingDreamId = null;
+  btnSubmitDream.textContent = 'Submit';
 };
 
 const handleShowForm = function () {
-  overlay.style.display = 'block';
-  formContainer.style.display = 'block';
+  showForm(overlay, formContainer);
 };
 
 const handleCloseForm = function () {
   if (fieldDescription.value) {
-    if (confirm('Your dream will vanish... Are you sure you want to close?'))
+    if (
+      confirm(
+        'Are you sure you want to close the form? Any unsaved changes will be lost.'
+      )
+    )
       closeForm(form, formContainer, overlay);
   } else {
     closeForm(form, formContainer, overlay);
@@ -113,7 +130,22 @@ const toggleDreamHighlight = function (e, isHovering) {
   }
 };
 
-const handleDeleteDream = function (e) {
+const handleEdit = function (e) {
+  if (e.target.classList.contains('icon-edit')) {
+    handleShowForm();
+
+    const dreamArticle = e.target.closest('.dream');
+
+    // Save ID being edited
+    editingDreamId = dreamArticle.dataset.id;
+
+    fillForm(dreamArticle, inputTitle, inputDate, fieldDescription);
+
+    btnSubmitDream.textContent = 'Save & close';
+  }
+};
+
+const handleDelete = function (e) {
   if (e.target.classList.contains('icon-delete')) {
     const dreamArticle = e.target.closest('.dream');
     const id = dreamArticle.dataset.id;
@@ -164,12 +196,13 @@ document.addEventListener('keydown', handleCloseOnKey);
 
 dreamList.addEventListener('mouseover', e => toggleDreamHighlight(e, true));
 dreamList.addEventListener('mouseout', e => toggleDreamHighlight(e, false));
-dreamList.addEventListener('click', handleDeleteDream);
+dreamList.addEventListener('click', handleEdit);
+dreamList.addEventListener('click', handleDelete);
 
 iconFixed.addEventListener('click', handleScrollToTop);
 window.addEventListener('scroll', handleToggleScrollIcon);
 
-// INIT
+// RUN APP
 const init = function () {
   getLocalStorage();
   renderDreams();

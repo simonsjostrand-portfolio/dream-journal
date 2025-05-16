@@ -73,6 +73,32 @@
   }
 }
 
+@keyframes wiggle {
+  0% {
+    rotate: 0deg;
+  }
+  20% {
+    rotate: 30deg;
+  }
+  40% {
+    rotate: 5deg;
+  }
+}
+
+@keyframes flash {
+  0% {
+  }
+  20% {
+    scale: 1.2;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.6;
+  }
+}
+
 /* @keyframes fadeInColor {
   0% {
     color: var(--clr-background);
