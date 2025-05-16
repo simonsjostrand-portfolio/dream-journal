@@ -117,10 +117,7 @@ const handleDeleteDream = function (e) {
   if (e.target.classList.contains('icon-delete')) {
     const dreamArticle = e.target.closest('.dream');
     const id = dreamArticle.dataset.id;
-    if (
-      dreamArticle &&
-      confirm('Are you sure you want to delete this dream?')
-    ) {
+    if (dreamArticle && confirm('This will permanently remove the dream.')) {
       // Remove from DOM
       dreamArticle.remove();
 

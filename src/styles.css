@@ -289,7 +289,7 @@ body {
 
 /* Dreams */
 .dream-list {
-  margin-block-end: 500px;
+  margin-block-end: 200px;
 
   display: flex;
   flex-direction: column;
@@ -297,7 +297,7 @@ body {
 }
 
 .dream {
-  inline-size: 760px;
+  inline-size: 840px;
   margin-inline: auto;
   padding: 60px 60px 40px;
 
