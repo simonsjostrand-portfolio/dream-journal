@@ -16,6 +16,8 @@ A simple web app to record and reflect on your dreams. Easily add dreams with a 
 2. Fill in your dream details: Title, Date(optional), and Description.
 3. Click **"Submit"** to save your dream.
 4. Your dream will be stored and displayed on the page.
+5. To close the form, press the <kbd>Escape</kbd> key, click the close icon, or click outside the form (on the overlay).
+6. To delete a dream, hover over the dream entry to reveal the delete icon, then click it.
 
 ## Tech Stack
 - **HTML** – Structure  
@@ -23,7 +25,7 @@ A simple web app to record and reflect on your dreams. Easily add dreams with a 
 - **JavaScript** – Functionality (local storage, form handling, UI updates)
 
 ## 📌 Future Improvements
-- Edit and delete dreams  
+- Edit dreams 
 - Search or filter dreams  
 
 ---
