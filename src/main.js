@@ -91,13 +91,13 @@ const handleSubmit = function (e) {
   setLocalStorage(dreams);
   renderDreams(dreams);
   closeForm(form, formContainer, overlay);
-
-  // Reset editing state
-  editingDreamId = null;
-  btnSubmitDream.textContent = 'Submit';
 };
 
 const handleShowForm = function () {
+  editingDreamId = null;
+  btnSubmitDream.textContent = 'Submit my Dream';
+
+  form.reset();
   showForm(overlay, formContainer);
 };
 
