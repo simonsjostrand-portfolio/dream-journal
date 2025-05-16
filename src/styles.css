@@ -15,7 +15,6 @@
   --fs-form-dream-title: 1.2rem;
   --fs-form-note: 1.23rem;
   --fs-dream-message: 1.2rem;
-  --fs-footer: 0.93rem;
 
   --fw-heading-primary: 300;
   --fw-button-add: 400;
@@ -32,6 +31,12 @@
   --clr-date: hsl(40, 100%, 61%);
   --clr-footer: hsl(0, 0%, 100%);
   --bg-clr-footer: hsla(164, 72%, 23%, 0.3);
+}
+
+.icon-delete {
+  width: 30px;
+  height: auto;
+  stroke: rgb(222, 222, 222);
 }
 
 body {
@@ -116,10 +121,9 @@ body {
     border: none;
     border-radius: 1px;
     margin-inline: auto;
-    margin-block-end: 420px;
+    margin-block-end: 240px;
     padding: 8px 24px;
     outline: 3px solid var(--clr-form);
-    /*  outline-offset: 3px; */
     transition: all 140ms;
 
     display: flex;
@@ -130,12 +134,7 @@ body {
     background-color: var(--clr-form);
     outline-color: var(--clr-add-dream);
     cursor: pointer;
-    /* outline-width: 2px;
-    outline-offset: 4px; */
   }
-
-  /* .btn-add-dream:active {
-  } */
 }
 
 .dream-message {
@@ -294,17 +293,42 @@ body {
 
   display: flex;
   flex-direction: column;
-  gap: 460px;
+  gap: 300px;
 }
 
 .dream {
   inline-size: 760px;
   margin-inline: auto;
+  padding: 60px 60px 40px;
 
   animation: fadeInSection linear;
   animation-timeline: view();
   animation-range-start: cover;
   animation-range-end: 600px;
+
+  position: relative;
+
+  .icon-edit {
+    display: none;
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+
+    position: absolute;
+    top: 8px;
+    right: 45px;
+  }
+
+  .icon-delete {
+    display: none;
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
 
   .dream-info {
     color: var(--clr-primary);
@@ -416,7 +440,29 @@ body {
 footer {
   color: var(--clr-footer);
   background-color: var(--bg-clr-footer);
-  font-size: var(--fs-footer);
-  padding-block: 60px;
+  padding-block: 100px;
   text-align: center;
+
+  position: relative;
+
+  .author {
+    color: #999;
+    font-size: 0.7rem;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+
+    transform: translate(-50%, -10%);
+
+    a {
+      color: hsl(62, 25%, 54%);
+      font-weight: 700;
+      text-decoration: none;
+    }
+  }
 }

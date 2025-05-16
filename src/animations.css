@@ -32,7 +32,6 @@
   }
 }
 
-/* Fade in sections */
 @keyframes fadeInSection {
   from {
     opacity: 0;
@@ -65,7 +64,6 @@
   }
 }
 
-/* Cloud drift */
 @keyframes cloudDrift {
   from {
     transform: translateX(-150px);
