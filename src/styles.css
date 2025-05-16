@@ -119,7 +119,7 @@ body {
     font-weight: var(--fw-button-add);
     letter-spacing: 1px;
     border: none;
-    border-radius: 1px;
+    border-radius: 2px;
     margin-inline: auto;
     margin-block-end: 240px;
     padding: 8px 24px;
