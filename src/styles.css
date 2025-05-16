@@ -33,12 +33,6 @@
   --bg-clr-footer: hsla(164, 72%, 23%, 0.3);
 }
 
-.icon-delete {
-  width: 30px;
-  height: auto;
-  stroke: rgb(222, 222, 222);
-}
-
 body {
   font-family: var(--ff-primary);
   line-height: var(--line-height-body);
@@ -289,7 +283,7 @@ body {
 
 /* Dreams */
 .dream-list {
-  margin-block-end: 200px;
+  margin-block-end: 330px;
 
   display: flex;
   flex-direction: column;
@@ -440,7 +434,7 @@ body {
 footer {
   color: var(--clr-footer);
   background-color: var(--bg-clr-footer);
-  padding-block: 100px;
+  padding-block: 90px;
   text-align: center;
 
   position: relative;
