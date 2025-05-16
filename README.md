@@ -5,6 +5,7 @@ A simple web app to record and reflect on your dreams. Easily add dreams with a 
 ## Features
 - Add new dreams with a title, date, and description.
 - Dreams are stored in **local storage** for persistence.
+- Edit or delete dreams (hover a dream article to show buttons)
 - Smooth scroll-to-top icon appearing after scrolling past header.
 - Simple and clean UI.
 
