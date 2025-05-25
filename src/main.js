@@ -14,9 +14,10 @@ const dreamList = document.querySelector('.dream-list');
 const dreamMessage = document.querySelector('.dream-message');
 const form = document.querySelector('.dream-form');
 const formContainer = document.querySelector('.dream_form-container');
-const overlay = document.querySelector('.overlay');
+const overlay = document.querySelector('.form-overlay');
 const inputTitle = document.querySelector('.dream_title-input');
 const inputDate = document.querySelector('.dream_date-input');
+const inputSearch = document.querySelector('.input-search');
 const fieldDescription = document.querySelector('.dream_description-field');
 const btnAddDream = document.querySelector('.btn-add-dream');
 const btnSubmitDream = document.querySelector('.btn-submit-dream');
@@ -44,7 +45,7 @@ const setLocalStorage = function (dream) {
   localStorage.setItem('dreams', JSON.stringify(dream));
 };
 
-const renderDreams = function () {
+const renderDreams = function (dreamsToRender = dreams) {
   dreamList.innerHTML = '';
 
   if (dreams.length === 0) {
@@ -53,7 +54,7 @@ const renderDreams = function () {
     hideDreamMessage(dreamMessage);
   }
 
-  dreams.forEach(dream => {
+  dreamsToRender.forEach(dream => {
     const html = `
       <article class="dream" data-id="${dream.id}">
         <header class="dream-info">
@@ -116,7 +117,17 @@ const handleCloseForm = function () {
 
 const handleCloseOnKey = e => (e.key === 'Escape' ? handleCloseForm() : '');
 
-const toggleDreamHighlight = function (e, isHovering) {
+const handleSearchDreams = function () {
+  const query = inputSearch.value.toLowerCase();
+  const filtered = dreams.filter(
+    dream =>
+      dream.title.toLowerCase().includes(query) ||
+      dream.description.toLowerCase().includes(query)
+  );
+  renderDreams(filtered);
+};
+
+const handleToggleDreamHighlight = function (e, isHovering) {
   const dreamArticle = e.target.closest('.dream');
 
   if (!dreamArticle || !dreamList.contains(dreamArticle)) return;
@@ -193,9 +204,14 @@ btnAddDream.addEventListener('click', handleShowForm);
 btnCloseForm.addEventListener('click', handleCloseForm);
 overlay.addEventListener('click', handleCloseForm);
 document.addEventListener('keydown', handleCloseOnKey);
+inputSearch.addEventListener('input', handleSearchDreams);
 
-dreamList.addEventListener('mouseover', e => toggleDreamHighlight(e, true));
-dreamList.addEventListener('mouseout', e => toggleDreamHighlight(e, false));
+dreamList.addEventListener('mouseover', e =>
+  handleToggleDreamHighlight(e, true)
+);
+dreamList.addEventListener('mouseout', e =>
+  handleToggleDreamHighlight(e, false)
+);
 dreamList.addEventListener('click', handleEdit);
 dreamList.addEventListener('click', handleDelete);
 

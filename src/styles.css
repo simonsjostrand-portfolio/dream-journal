@@ -26,6 +26,7 @@
   --clr-primary: hsl(28, 98%, 49%);
   --clr-secondary: rgb(111, 180, 232);
   --clr-add-dream: hsl(164, 70%, 30%);
+  --clr-search-bg: rgb(101, 178, 155);
   --clr-dream-message: hsla(29, 35%, 76%, 0.566);
   --clr-form: hsl(163, 68%, 18%); /* hsl(164, 72%, 23%) */
   --clr-date: hsl(40, 100%, 61%);
@@ -47,7 +48,7 @@ body {
 .hero {
   inline-size: 100%;
   block-size: 100vh;
-  margin-block-end: 220px;
+  margin-block-end: 160px;
 
   position: relative;
 
@@ -91,33 +92,34 @@ body {
 }
 
 .hero-icon {
-  width: 50px;
-  height: auto;
+  inline-size: 50px;
+  block-size: auto;
+
   position: absolute;
   top: 30px;
   left: 30px;
 }
 
-/* Add dream button */
+/* Button add dream */
 .add_dream-wrapper {
   svg {
-    width: 80px;
-    height: 80px;
+    inline-size: 80px;
+    block-size: 80px;
     margin-inline: auto;
   }
 
   .btn-add-dream {
     color: #fff;
-    background-color: var(--clr-add-dream);
+    background-color: var(--clr-form);
     font-size: var(--fs-button-add);
     font-weight: var(--fw-button-add);
     letter-spacing: 1px;
     border: none;
     border-radius: 2px;
     margin-inline: auto;
-    margin-block-end: 240px;
-    padding: 8px 24px;
-    outline: 3px solid var(--clr-form);
+    margin-block-end: 40px;
+    padding: 0.5rem 1.5rem;
+    outline: 3px solid var(--clr-add-dream);
     transition: all 140ms;
 
     display: flex;
@@ -125,8 +127,8 @@ body {
   }
 
   .btn-add-dream:hover {
-    background-color: var(--clr-form);
-    outline-color: var(--clr-add-dream);
+    background-color: var(--clr-add-dream);
+    outline-color: var(--clr-form);
     cursor: pointer;
   }
 }
@@ -177,7 +179,7 @@ body {
     gap: 24px;
 
     .dream_title-wrapper {
-      width: 300px;
+      inline-size: 300px;
       letter-spacing: 1px;
 
       position: relative;
@@ -185,11 +187,11 @@ body {
 
     .dream_title-input {
       display: block;
-      width: 100%;
+      inline-size: 100%;
       color: #fff;
       background-color: transparent;
       border-bottom: 3px solid;
-      padding-block: 11px;
+      padding-block: 0.69rem;
     }
 
     .dream_title-input:focus,
@@ -221,7 +223,7 @@ body {
     }
 
     .dream_date-input {
-      height: 52px;
+      block-size: 52px;
       padding-inline: 10px;
     }
   }
@@ -230,7 +232,7 @@ body {
     inline-size: 100%;
     min-block-size: 200px;
     line-height: var(--line-height-textarea);
-    padding: 5px 8px;
+    padding: 0.31rem 0.5rem;
     margin-block-end: 50px;
     resize: none;
   }
@@ -245,7 +247,7 @@ body {
       color: #fff;
       background-color: var(--clr-add-dream);
       border: none;
-      padding: 10px 30px;
+      padding: 0.625rem 1.875rem;
 
       justify-self: center;
     }
@@ -269,16 +271,36 @@ body {
   }
 }
 
-.overlay {
+.form-overlay {
+  display: none;
+  background: rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.01);
-  backdrop-filter: blur(10px);
-  display: none;
-  z-index: 1000;
+}
+
+.input-search {
+  display: block;
+  max-inline-size: 300px;
+  background-color: var(--clr-search-bg);
+  padding: 0.3rem 0.6rem;
+  margin-inline: auto;
+  margin-block-end: 220px;
+}
+
+.input-search::placeholder {
+  color: #555;
+}
+
+.input-search:focus {
+  outline-color: #444;
+  outline-width: 3px;
+  outline-style: solid;
 }
 
 /* Dreams */
@@ -293,7 +315,7 @@ body {
 .dream {
   inline-size: 840px;
   margin-inline: auto;
-  padding: 60px 60px 40px;
+  padding: 3.75rem 3.75rem 2.5rem;
 
   animation: fadeInSection linear;
   animation-timeline: view();
@@ -304,8 +326,8 @@ body {
 
   .icon-edit {
     display: none;
-    width: 30px;
-    height: auto;
+    inline-size: 30px;
+    block-size: auto;
     cursor: pointer;
 
     position: absolute;
@@ -319,8 +341,8 @@ body {
 
   .icon-delete {
     display: none;
-    width: 30px;
-    height: auto;
+    inline-size: 30px;
+    block-size: auto;
     cursor: pointer;
 
     position: absolute;
@@ -365,13 +387,14 @@ body {
 /* Fixed icon go top */
 .fixed-icon-wrapper {
   display: none;
+
   position: fixed;
   top: 80px;
   left: 30px;
 
   .icon-go-top {
-    width: 50px;
-    height: auto;
+    inline-size: 50px;
+    block-size: auto;
   }
 
   .icon-go-top:hover {
@@ -399,41 +422,42 @@ body {
 
 /* Clouds */
 .fixed-cloud-wrapper {
+  opacity: 0.4;
+  z-index: -1;
+
   position: absolute;
   bottom: 0;
   left: 0;
-  z-index: -1;
-  opacity: 0.4;
 }
 
 .clouds-wrapper {
-  height: 100%;
-  width: 100%;
+  inline-size: 100%;
+  block-size: 100%;
 
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 
   .cloud-icon-medium {
-    width: 80px;
+    inline-size: 80px;
 
     animation: cloudDrift 99s linear infinite;
   }
 
   .cloud-icon-small {
-    width: 50px;
+    inline-size: 50px;
 
     animation: cloudDrift 84s linear infinite;
   }
 
   .cloud-icon-medium-large {
-    width: 92px;
+    inline-size: 92px;
 
     animation: cloudDrift 130s linear infinite;
   }
 
   .cloud-icon-large {
-    width: 120px;
+    inline-size: 120px;
 
     animation: cloudDrift 260s linear infinite;
   }
@@ -450,6 +474,7 @@ footer {
   .author {
     color: #999;
     font-size: 0.7rem;
+
     display: flex;
     gap: 10px;
     align-items: center;
