@@ -3,6 +3,7 @@
 A simple web app to record and reflect on your dreams. Easily add dreams with a title, date, and description, and store them in your browser for later review.
 
 ## Features
+
 - Add new dreams with a title, date, and description.
 - Dreams are stored in **local storage** for persistence.
 - Edit or delete dreams (hover a dream article to show buttons)
@@ -10,9 +11,11 @@ A simple web app to record and reflect on your dreams. Easily add dreams with a 
 - Simple and clean UI.
 
 ## 🌍 Live Demo
-[Check it out here](https://simonsjostrand-portfolio.github.io/dream-journal/)  
+
+[Check it out here](https://simonsjostrand-portfolio.github.io/dream-journal/)
 
 ## 📖 How to Use
+
 1. Click the **"Add Dream"** button.
 2. Fill in your dream details: Title, Date(optional), and Description.
 3. Click **"Submit"** to save your dream.
@@ -21,10 +24,11 @@ A simple web app to record and reflect on your dreams. Easily add dreams with a 
 6. To delete a dream, hover over the dream entry to reveal the delete icon, then click it.
 
 ## Tech Stack
-- **HTML** – Structure  
-- **CSS** – Styling  
+
+- **HTML** – Structure
+- **CSS** – Styling
 - **JavaScript** – Functionality (local storage, form handling, UI updates)
 
 ### Want to contribute?
-Feel free to fork the repo, suggest improvements, or report issues!
 
+Feel free to fork the repo, suggest improvements, or report issues!

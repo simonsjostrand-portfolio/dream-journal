@@ -285,7 +285,7 @@ body {
 }
 
 .input-search {
-  display: block;
+  display: none;
   max-inline-size: 300px;
   background-color: var(--clr-search-bg);
   padding: 0.3rem 0.6rem;
@@ -301,6 +301,10 @@ body {
   outline-color: #444;
   outline-width: 3px;
   outline-style: solid;
+}
+
+.active {
+  display: block;
 }
 
 /* Dreams */

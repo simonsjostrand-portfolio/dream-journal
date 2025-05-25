@@ -52,6 +52,7 @@ const renderDreams = function (dreamsToRender = dreams) {
     renderDreamMessage(dreamMessage);
   } else {
     hideDreamMessage(dreamMessage);
+    inputSearch.classList.add('active');
   }
 
   dreamsToRender.forEach(dream => {
@@ -170,7 +171,9 @@ const handleDelete = function (e) {
       // Update localStorage
       setLocalStorage(dreams);
 
-      // Show dream message if deleting the last dream
+      // If the last dream, hide search input and show dream message
+      inputSearch.classList.remove('active');
+
       JSON.parse(localStorage.getItem('dreams') || '[]').length === 0
         ? renderDreamMessage(dreamMessage)
         : '';
