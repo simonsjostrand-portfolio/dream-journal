@@ -331,7 +331,7 @@ body {
   .btn-edit,
   .btn-delete {
     display: none;
-    inline-size: 30px;
+    inline-size: 24px;
     block-size: auto;
     cursor: pointer;
   }
@@ -339,7 +339,7 @@ body {
   .btn-edit {
     position: absolute;
     top: 8px;
-    right: 50px;
+    right: 40px;
   }
 
   .btn-edit:hover {
