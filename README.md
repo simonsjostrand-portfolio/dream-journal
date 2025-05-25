@@ -25,11 +25,6 @@ A simple web app to record and reflect on your dreams. Easily add dreams with a 
 - **CSS** – Styling  
 - **JavaScript** – Functionality (local storage, form handling, UI updates)
 
-## 📌 Future Improvements
-- Search or filter dreams  
-
----
-
 ### Want to contribute?
 Feel free to fork the repo, suggest improvements, or report issues!
 
