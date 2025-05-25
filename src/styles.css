@@ -328,33 +328,31 @@ body {
 
   position: relative;
 
-  .icon-edit {
+  .btn-edit,
+  .btn-delete {
     display: none;
     inline-size: 30px;
     block-size: auto;
     cursor: pointer;
+  }
 
+  .btn-edit {
     position: absolute;
     top: 8px;
     right: 50px;
   }
 
-  .icon-edit:hover {
+  .btn-edit:hover {
     animation: wiggle 3s ease-out;
   }
 
-  .icon-delete {
-    display: none;
-    inline-size: 30px;
-    block-size: auto;
-    cursor: pointer;
-
+  .btn-delete {
     position: absolute;
     top: 8px;
     right: 8px;
   }
 
-  .icon-delete:hover {
+  .btn-delete:hover {
     animation: flash 1s ease-out;
   }
 

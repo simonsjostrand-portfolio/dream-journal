@@ -30,20 +30,20 @@ export const fillForm = function (
 
 export const showDreamIcons = function (dreamArticle) {
   // Show edit button
-  const editIcon = dreamArticle.querySelector('.icon-edit');
+  const editIcon = dreamArticle.querySelector('.btn-edit');
   editIcon.style.display = 'block';
 
   // Show delete button
-  const closeIcon = dreamArticle.querySelector('.icon-delete');
+  const closeIcon = dreamArticle.querySelector('.btn-delete');
   closeIcon.style.display = 'block';
 };
 
 export const hideDreamIcons = function (dreamArticle) {
   // Hide edit button
-  const closeIcon = dreamArticle.querySelector('.icon-delete');
+  const closeIcon = dreamArticle.querySelector('.btn-delete');
   closeIcon.style.display = 'none';
 
   // Hide delete button
-  const editIcon = dreamArticle.querySelector('.icon-edit');
+  const editIcon = dreamArticle.querySelector('.btn-edit');
   editIcon.style.display = 'none';
 };

@@ -63,8 +63,8 @@ const renderDreams = function (dreamsToRender = dreams) {
           <h2 class="dream-title">${dream.title}</h2>
         </header>
         <p class="dream-description">${dream.description}</p>
-        <img class="icon-edit" src="src/img/edit-icon.png" />
-        <img class="icon-delete" src="src/img/delete-icon.png" />
+        <img class="btn-edit" src="src/img/edit-icon.png" />
+        <img class="btn-delete" src="src/img/delete-icon.png" />
       </article> 
     `;
     dreamList.insertAdjacentHTML('afterbegin', html);
@@ -143,7 +143,7 @@ const handleToggleDreamHighlight = function (e, isHovering) {
 };
 
 const handleEdit = function (e) {
-  if (e.target.classList.contains('icon-edit')) {
+  if (e.target.classList.contains('btn-edit')) {
     handleShowForm();
 
     const dreamArticle = e.target.closest('.dream');
@@ -158,8 +158,9 @@ const handleEdit = function (e) {
 };
 
 const handleDelete = function (e) {
-  if (e.target.classList.contains('icon-delete')) {
+  if (e.target.classList.contains('btn-delete')) {
     const dreamArticle = e.target.closest('.dream');
+    console.log(dreamArticle);
     const id = dreamArticle.dataset.id;
     if (dreamArticle && confirm('This will permanently remove the dream.')) {
       // Remove from DOM
@@ -171,12 +172,11 @@ const handleDelete = function (e) {
       // Update localStorage
       setLocalStorage(dreams);
 
-      // If the last dream, hide search input and show dream message
-      inputSearch.classList.remove('active');
-
-      JSON.parse(localStorage.getItem('dreams') || '[]').length === 0
-        ? renderDreamMessage(dreamMessage)
-        : '';
+      // If deleting last dream, hide search input and show dream message
+      if (JSON.parse(localStorage.getItem('dreams') || '[]').length === 0) {
+        inputSearch.classList.remove('active');
+        renderDreamMessage(dreamMessage);
+      }
     }
   }
 };
@@ -207,19 +207,17 @@ btnAddDream.addEventListener('click', handleShowForm);
 btnCloseForm.addEventListener('click', handleCloseForm);
 overlay.addEventListener('click', handleCloseForm);
 document.addEventListener('keydown', handleCloseOnKey);
+iconFixed.addEventListener('click', handleScrollToTop);
+window.addEventListener('scroll', handleToggleScrollIcon);
 inputSearch.addEventListener('input', handleSearchDreams);
-
+dreamList.addEventListener('click', handleEdit);
+dreamList.addEventListener('click', handleDelete);
 dreamList.addEventListener('mouseover', e =>
   handleToggleDreamHighlight(e, true)
 );
 dreamList.addEventListener('mouseout', e =>
   handleToggleDreamHighlight(e, false)
 );
-dreamList.addEventListener('click', handleEdit);
-dreamList.addEventListener('click', handleDelete);
-
-iconFixed.addEventListener('click', handleScrollToTop);
-window.addEventListener('scroll', handleToggleScrollIcon);
 
 // RUN APP
 const init = function () {
