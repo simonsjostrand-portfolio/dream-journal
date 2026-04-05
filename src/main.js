@@ -30,30 +30,28 @@ const iconFixed = document.querySelector(".icon-go-top");
 let dreams = [];
 let editingDreamId = null;
 
-// Get dreams from local storage
+// LOCAL STORAGE
 const getLocalStorage = function () {
-  try {
-    const data = JSON.parse(localStorage.getItem("dreams"));
-    if (data) dreams = data;
-  } catch {
-    error("Error parsing dreams from localStorage:", error);
-  }
+  const data = JSON.parse(localStorage.getItem("dreams"));
+  if (data) dreams = data;
 };
 
-// Save dreams to local storage
-const setLocalStorage = function (dream) {
-  localStorage.setItem("dreams", JSON.stringify(dream));
+const setLocalStorage = function () {
+  localStorage.setItem("dreams", JSON.stringify(dreams));
 };
 
+// RENDER
 const renderDreams = function (dreamsToRender = dreams) {
   dreamList.innerHTML = "";
 
-  if (dreams.length === 0) {
+  if (dreamsToRender.length === 0) {
     renderDreamMessage(dreamMessage);
-  } else {
-    hideDreamMessage(dreamMessage);
-    inputSearch.classList.add("active");
+    inputSearch.classList.remove("active");
+    return;
   }
+
+  hideDreamMessage(dreamMessage);
+  inputSearch.classList.add("active");
 
   dreamsToRender.forEach((dream) => {
     const html = `
@@ -62,39 +60,55 @@ const renderDreams = function (dreamsToRender = dreams) {
           <p class="dream-date">${dream.date}</p>
           <h2 class="dream-title">${dream.title}</h2>
         </header>
+
         <p class="dream-description">${dream.description}</p>
-        <img class="btn-edit" src="src/img/edit-icon.png" />
-        <img class="btn-delete" src="src/img/delete-icon.png" />
-      </article> 
+
+        <div class="dream-actions">
+          <button class="btn-edit" type="button" aria-label="Edit dream">
+            <img src="src/img/edit-icon.png" alt="" />
+          </button>
+
+          <button class="btn-delete" type="button" aria-label="Delete dream">
+            <img src="src/img/delete-icon.png" alt="" />
+          </button>
+        </div>
+      </article>
     `;
     dreamList.insertAdjacentHTML("afterbegin", html);
   });
 };
 
-// Event handlers
+// SUBMIT
 const handleSubmit = function (e) {
   e.preventDefault();
 
-  const dream = {
-    id: editingDreamId ?? crypto.randomUUID(), // If editing, use existing ID
+  const newDream = {
+    id: editingDreamId ? editingDreamId : crypto.randomUUID(),
     title: inputTitle.value.trim(),
     date: inputDate.value.trim(),
     description: fieldDescription.value.trim(),
   };
 
   if (editingDreamId) {
-    // Find index and replace the dream
-    const index = dreams.findIndex((dream) => dream.id === editingDreamId);
-    dreams[index] = dream;
+    const index = dreams.findIndex((d) => d.id === editingDreamId);
+
+    if (index !== -1) {
+      dreams[index] = newDream;
+    }
+
+    editingDreamId = null;
+    btnSubmitDream.textContent = "Submit my Dream";
   } else {
-    dreams.push(dream);
+    dreams.push(newDream);
   }
 
-  setLocalStorage(dreams);
-  renderDreams(dreams);
+  setLocalStorage();
+  renderDreams();
   closeForm(form, formContainer, overlay);
+  form.reset();
 };
 
+// OPEN FORM
 const handleShowForm = function () {
   editingDreamId = null;
   btnSubmitDream.textContent = "Submit my Dream";
@@ -103,81 +117,70 @@ const handleShowForm = function () {
   showForm(overlay, formContainer);
 };
 
+// CLOSE FORM
 const handleCloseForm = function () {
   if (fieldDescription.value) {
-    if (
-      confirm(
-        "Are you sure you want to close the form? Any unsaved changes will be lost.",
-      )
-    )
-      closeForm(form, formContainer, overlay);
-  } else {
-    closeForm(form, formContainer, overlay);
+    if (!confirm("Are you sure? Unsaved changes will be lost.")) return;
+  }
+  closeForm(form, formContainer, overlay);
+};
+
+// EDIT
+const handleEdit = function (dreamArticle) {
+  editingDreamId = dreamArticle.dataset.id;
+
+  fillForm(dreamArticle, inputTitle, inputDate, fieldDescription);
+
+  btnSubmitDream.textContent = "Save & close";
+
+  showForm(overlay, formContainer);
+};
+
+// DELETE
+const handleDelete = function (id) {
+  if (!confirm("This will permanently remove the dream.")) return;
+
+  dreams = dreams.filter((d) => d.id !== id);
+
+  setLocalStorage();
+  renderDreams();
+};
+
+// EVENT DELEGATION
+const handleDreamActions = function (e) {
+  const dreamArticle = e.target.closest(".dream");
+  if (!dreamArticle) return;
+
+  const id = dreamArticle.dataset.id;
+
+  if (e.target.closest(".btn-edit")) {
+    handleEdit(dreamArticle);
+  }
+
+  if (e.target.closest(".btn-delete")) {
+    handleDelete(id);
   }
 };
 
-const handleCloseOnKey = (e) => (e.key === "Escape" ? handleCloseForm() : "");
-
+// SEARCH
 const handleSearchDreams = function () {
   const query = inputSearch.value.toLowerCase();
+
   const filtered = dreams.filter(
-    (dream) =>
-      dream.title.toLowerCase().includes(query) ||
-      dream.description.toLowerCase().includes(query),
+    (d) =>
+      d.title.toLowerCase().includes(query) ||
+      d.description.toLowerCase().includes(query),
   );
+
   renderDreams(filtered);
 };
 
-const handleToggleDreamHighlight = function (e, isHovering) {
-  const dreamArticle = e.target.closest(".dream");
-
-  if (!dreamArticle || !dreamList.contains(dreamArticle)) return;
-
-  dreamArticle.style.outline = isHovering ? "2px solid #333" : "none";
-
-  if (isHovering) {
-    showDreamIcons(dreamArticle);
+// SCROLL ICON
+const handleToggleScrollIcon = () => {
+  if (window.scrollY > header.offsetHeight) {
+    fixedIconWrapper.classList.add("visible");
   } else {
-    hideDreamIcons(dreamArticle);
-  }
-};
-
-const handleEdit = function (e) {
-  if (e.target.classList.contains("btn-edit")) {
-    handleShowForm();
-
-    const dreamArticle = e.target.closest(".dream");
-
-    // Save ID being edited
-    editingDreamId = dreamArticle.dataset.id;
-
-    fillForm(dreamArticle, inputTitle, inputDate, fieldDescription);
-
-    btnSubmitDream.textContent = "Save & close";
-  }
-};
-
-const handleDelete = function (e) {
-  if (e.target.classList.contains("btn-delete")) {
-    const dreamArticle = e.target.closest(".dream");
-    console.log(dreamArticle);
-    const id = dreamArticle.dataset.id;
-    if (dreamArticle && confirm("This will permanently remove the dream.")) {
-      // Remove from DOM
-      dreamArticle.remove();
-
-      // Remove from dreams array
-      dreams = dreams.filter((dream) => id !== dream.id);
-
-      // Update localStorage
-      setLocalStorage(dreams);
-
-      // If deleting last dream, hide search input and show dream message
-      if (JSON.parse(localStorage.getItem("dreams") || "[]").length === 0) {
-        inputSearch.classList.remove("active");
-        renderDreamMessage(dreamMessage);
-      }
-    }
+    fixedIconWrapper.classList.remove("visible");
   }
 };
 
@@ -186,40 +189,22 @@ const handleScrollToTop = function (e) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-const handleToggleScrollIcon = () => {
-  // Get header height
-  const headerHeight = header.offsetHeight;
-
-  // Get current vertical scroll position
-  const scrollPosition = window.scrollY;
-
-  // Show or hide scroll icon based on scroll position
-  if (scrollPosition > headerHeight) {
-    fixedIconWrapper.classList.add("visible");
-  } else {
-    fixedIconWrapper.classList.remove("visible");
-  }
-};
-
-// Event listeners
+// EVENTS
 form.addEventListener("submit", handleSubmit);
 btnAddDream.addEventListener("click", handleShowForm);
 btnCloseForm.addEventListener("click", handleCloseForm);
 overlay.addEventListener("click", handleCloseForm);
-document.addEventListener("keydown", handleCloseOnKey);
-iconFixed.addEventListener("click", handleScrollToTop);
-window.addEventListener("scroll", handleToggleScrollIcon);
-inputSearch.addEventListener("input", handleSearchDreams);
-dreamList.addEventListener("click", handleEdit);
-dreamList.addEventListener("click", handleDelete);
-dreamList.addEventListener("mouseover", (e) =>
-  handleToggleDreamHighlight(e, true),
-);
-dreamList.addEventListener("mouseout", (e) =>
-  handleToggleDreamHighlight(e, false),
-);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") handleCloseForm();
+});
 
-// RUN APP
+dreamList.addEventListener("click", handleDreamActions);
+inputSearch.addEventListener("input", handleSearchDreams);
+
+window.addEventListener("scroll", handleToggleScrollIcon);
+iconFixed.addEventListener("click", handleScrollToTop);
+
+// INIT
 const init = function () {
   getLocalStorage();
   renderDreams();

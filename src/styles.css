@@ -336,6 +336,28 @@ body {
     cursor: pointer;
   }
 
+  .btn-edit,
+  .btn-delete {
+    display: none;
+    inline-size: 24px;
+    block-size: 24px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-edit img,
+  .btn-delete img {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
   .btn-edit {
     position: absolute;
     top: 8px;
